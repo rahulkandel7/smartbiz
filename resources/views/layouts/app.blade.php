@@ -67,7 +67,7 @@
             @yield('content')
 
             {{-- Footer Start --}}
-                <div class="w-full bg-gray-200 shadow-md">
+                <div class="w-full bg-[#6697e038] ">
                     <div class="w-10/12 mx-auto">
                         <div class="grid grid-cols-1 md:grid-cols-3 py-8">
                             <div class="text-gray-600">
@@ -120,6 +120,18 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div class="w-10/12 mx-auto pt-3 pb-1">
+                        <div class="flex justify-between flex-col md:flex-row ">
+                            <p>
+                                &copy; Copyright <b>Smartbiz.</b> All Rights reserved
+                            </p>
+                            <p>
+                                Developed by: <a href="https://bitmapitsolution.com" class="text-red-500 hover:text-red-700">BITS</a>
+                            </p>
                         </div>
                     </div>
                 </div>
