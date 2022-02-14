@@ -33,14 +33,6 @@
             .card:hover {
                 background-position: left top;
             }
-
-            .offset:before { 
-                display: block; 
-                content: " "; 
-                margin-top: -10px;  
-                visibility: hidden; 
-            }
-
         </style>
 
         @yield('css')
