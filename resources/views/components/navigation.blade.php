@@ -22,7 +22,7 @@
                 </a>
     
                 <a href="#contact" class="px-4">
-                    <x-navlinks values="Contact"></x-navlinks>
+                    <x-navlinks values="Contact" class=" active:text-[#284b81] active:border-t-2 active:border-b-2 active:border-[#ed1b24]"></x-navlinks>
                 </a>
             </div>
         </div>

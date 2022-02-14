@@ -76,7 +76,7 @@
     {{-- First Services end --}}
 
     {{-- About US Start --}}
-        <div class="bg-[#6697e038] w-full" id="about">
+        <div class="bg-[#6697e038] w-full offset" id="about">
             <div class="w-10/12 mx-auto pb-8">
                 <div class="flex justify-center pt-20 wow fadeInDown"  data-wow-duration="2s">
                     <div>
@@ -138,7 +138,7 @@
     {{-- About Us End --}}
 
     {{-- Services Start --}}
-        <div class=" w-full" id="services">
+        <div class=" w-full offset" id="services">
             <div class="w-10/12 mx-auto pb-8">
                 <div class="flex justify-center pt-20 wow fadeInUp"  data-wow-duration="2s">
                     <div>
@@ -319,7 +319,7 @@
     {{-- Testonomial End --}}
 
     {{-- Teams Start --}}
-        <div class="bg-[#6697e038] w-full" id="teams">
+        <div class="bg-[#6697e038] w-full offset" id="teams">
             <div class="w-10/12 mx-auto pb-8">
                 <div class="flex justify-center pt-20 wow fadeInUp" data-wow-duration="2s">
                     <div>
@@ -423,7 +423,7 @@
     {{-- Teams End --}}
 
     {{-- Contact Start --}}
-        <div class=" w-full" id="contact">
+        <div class=" w-full offset" id="contact">
             <div class="w-10/12 mx-auto pb-8">
                 <div class="flex justify-center pt-20 wow fadeInUp"  data-wow-duration="2s">
                     <div>
