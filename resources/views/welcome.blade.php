@@ -24,6 +24,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.message')
     <div class="bg-[url('/images/b.jpg')] w-full h-[85vh] bg-fixed bg-no-repeat bg-cover">
         <div class="w-10/12 mx-auto pt-[35%] md:pt-[18%]">
             <p class="font-bold text-5xl text-white">
@@ -41,7 +42,7 @@
     </div>
 
     {{-- First services start --}}
-        <div class="w-10/12 mx-auto py-20 ">
+        {{-- <div class="w-10/12 mx-auto py-20 ">
             <div class="grid md:grid-cols-4 gap-x-4 gap-y-4 wow fadeInUp" data-wow-duration="2s" >
                 <x-card>
                     <x-slot name="icon"> 
@@ -72,8 +73,28 @@
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere pariatur dolorum perspiciatis dolore illum architecto vitae mollitia veniam repellendus, iste a voluptates magni, voluptatibus ea deleniti. Maiores vitae sapiente unde.
                 </x-card>
             </div>
-        </div>
+        </div> --}}
     {{-- First Services end --}}
+
+    {{-- Notice Start --}}
+        <div class="w-full bg-zinc-700 py-3">
+            <div class="w-11/12 mx-auto">
+                <div class="grid grid-cols-5 text-sm md:text-lg">
+                    <div class="border-r border-gray-100 col-span-2 md:col-span-1">
+                        <h3 class="font-sans text-right pr-6 mt-[2px] md:mt-0  text-white">Latest Notices </h3>
+                    </div>
+                    <div class="md:col-span-4 pl-2 col-span-3">
+                        <marquee scrollamount=8 direction="left" width="100%" class="text-white font-mono" onmouseover="this.stop();" onmouseout="this.start();">
+                            @foreach ($notices as $notice)
+                                {{$notice->notice}}
+                            @endforeach
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{-- Notice End --}}
 
     {{-- About US Start --}}
         <div class="bg-[#6697e038] w-full" id="about">
@@ -252,63 +273,28 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide">
-                        <div class="flex justify-center">
-                            <div class="px-20 md:px-32">
-                                <div class="flex justify-center">
-                                    <img src="{{asset('images/b.jpeg')}}" class="rounded-full w-28 h-28 border-4 border-gray-200">
-            
+                    @foreach ($testos as $testo)
+                        <div class="swiper-slide">
+                            <div class="flex justify-center">
+                                <div class="px-20 md:px-32">
+                                    <div class="flex justify-center">
+                                        <img src="/storage/{{$testo->photopath}}" class="rounded-full w-28 h-28 border-4 border-gray-200">
+                
+                                    </div>
+                                    <h4 class="text-xl mt-6 font-bold text-center text-white">
+                                        {{$testo->name}}
+                                    </h4>
+                                    <p class="text-gray-200 text-center">
+                                        {{$testo->post}}
+                                    </p>
+                                    <p class="text-center text-gray-400 italic">
+                                        &quot; {{$testo->description}} &quot;
+                                    </p>
                                 </div>
-                                <h4 class="text-xl mt-6 font-bold text-center text-white">
-                                    Lorem Ipsum
-                                </h4>
-                                <p class="text-gray-200 text-center">
-                                    Post
-                                </p>
-                                <p class="text-center text-gray-400 italic">
-                                    &quot; Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, pariatur maxime. Blanditiis facere expedita, vitae officia consectetur, aspernatur eum error placeat corrupti facilis odit perspiciatis atque commodi architecto eveniet et. &quot;
-                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="flex justify-center">
-                            <div class="px-20 md:px-32">
-                                <div class="flex justify-center">
-                                    <img src="{{asset('images/b.jpeg')}}" class="rounded-full w-28 h-28 border-4 border-gray-200">
-            
-                                </div>
-                                <h4 class="text-xl mt-6 font-bold text-center text-white">
-                                    Lorem Ipsum 12e
-                                </h4>
-                                <p class="text-gray-200 text-center">
-                                    Post
-                                </p>
-                                <p class="text-center text-gray-400 italic">
-                                    &quot; Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, pariatur maxime. Blanditiis facere expedita, vitae officia consectetur, aspernatur eum error placeat corrupti facilis odit perspiciatis atque commodi architecto eveniet et. &quot;
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="flex justify-center">
-                            <div class="px-20 md:px-32">
-                                <div class="flex justify-center">
-                                    <img src="{{asset('images/b.jpeg')}}" class="rounded-full w-28 h-28 border-4 border-gray-200">
-            
-                                </div>
-                                <h4 class="text-xl mt-6 font-bold text-center text-white">
-                                    Lorem Ipsum asdaf
-                                </h4>
-                                <p class="text-gray-200 text-center">
-                                    Post
-                                </p>
-                                <p class="text-center text-gray-400 italic">
-                                    &quot; Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, pariatur maxime. Blanditiis facere expedita, vitae officia consectetur, aspernatur eum error placeat corrupti facilis odit perspiciatis atque commodi architecto eveniet et. &quot;
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    
 
                 </div>
                 <!-- If we need pagination -->
@@ -334,87 +320,38 @@
                         </p>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-4 my-5 gap-x-8 gap-y-5">
-                    <div class="w-full border images border-sky-100 h-auto pb-5 bg-white rounded-md hover:shadow-lg shadow group overflow-hidden">
+                <div class="flex flex-wrap justify-center md:grid-cols-4 my-5 gap-x-8 gap-y-5">
+                    @foreach ($teams as $team)
+                        <div class=" border w-72 images border-sky-100 h-auto pb-5 bg-white rounded-md hover:shadow-lg shadow group overflow-hidden wow slideInLeft">
 
-                        <div class="group">
-                            <div class="relative">
-                                <img src="{{asset('images/p.webp')}}" class="w-full">
-                                <div class="absolute bottom-[1px] w-full hidden group-hover:block">
-                                    <div class="flex  justify-center w-full wow fadeInUp">
-                                        <div>
-                                            <a href="#">
-                                                <i class="fab fa-facebook p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fab fa-instagram p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
+                            <div class="group">
+                                <div class="relative">
+                                    <img src="/storage/{{$team->photopath}}" class="w-72">
+                                    <div class="absolute bottom-[1px] w-full hidden group-hover:block">
+                                        <div class="flex  justify-center w-full wow fadeInUp">
+                                            <div>
+                                                <a href="{{$team->fblink}}">
+                                                    <i class="fab fa-facebook p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
+                                                </a>
+                                                <a href="{{$team->instalink}}">
+                                                    <i class="fab fa-instagram p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <h2 class="text-xl font-bold mt-3 group-hover:text-[#284b81] px-5">{{$team->name}}</h2>
+                                <p class="text-gray-600 px-5 ">
+                                    {{$team->post}}
+                                </p>
                             </div>
-                            <h2 class="text-xl font-bold mt-3 group-hover:text-[#284b81] px-5">Lorem Ipsum</h2>
-                            <p class="text-gray-600 px-5 ">
-                                CEO
-                            </p>
+
+
                         </div>
+                    @endforeach
+                    
 
-
-                    </div>
-
-                    <div class="w-full border images border-sky-100 h-auto pb-5 bg-white rounded-md hover:shadow-lg shadow group overflow-hidden">
-
-                        <div class="group">
-                            <div class="relative">
-                                <img src="{{asset('images/p.webp')}}" class="w-full">
-                                <div class="absolute bottom-[1px] w-full hidden group-hover:block">
-                                    <div class="flex  justify-center w-full wow fadeInUp">
-                                        <div>
-                                            <a href="#">
-                                                <i class="fab fa-facebook p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fab fa-instagram p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 class="text-xl font-bold mt-3 group-hover:text-[#284b81] px-5">Lorem Ipsum</h2>
-                            <p class="text-gray-600 px-5 ">
-                                CEO
-                            </p>
-                        </div>
-
-
-                    </div>
-
-                    <div class="w-full border images border-sky-100 h-auto pb-5 bg-white rounded-md hover:shadow-lg shadow group overflow-hidden">
-
-                        <div class="group">
-                            <div class="relative">
-                                <img src="{{asset('images/p.webp')}}" class="w-full">
-                                <div class="absolute bottom-[1px] w-full hidden group-hover:block">
-                                    <div class="flex  justify-center w-full wow fadeInUp">
-                                        <div>
-                                            <a href="#">
-                                                <i class="fab fa-facebook p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fab fa-instagram p-3 rounded-md text-xl mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 class="text-xl font-bold mt-3 group-hover:text-[#284b81] px-5">Lorem Ipsum</h2>
-                            <p class="text-gray-600 px-5 ">
-                                CEO
-                            </p>
-                        </div>
-
-
-                    </div>
+                    
 
                     
                 </div>
@@ -494,11 +431,12 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8756829936005!2d84.41784611495!3d27.690236932850702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb35beab27a5%3A0x92de245797a63af!2sBITS%20-Bitmap%20IT%20Solution%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1644760268804!5m2!1sen!2snp" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     <div class="mt-5">
-                        <form>
+                        <form action="{{route('contacts.store')}}" method="post">
+                            @csrf
                             <input type="text" name="name" class="rounded shadow-md border-[#284c817e] border focus:ring-transparent focus:border-[#284b81] active:border-[#284b81] w-full my-2" placeholder="Your Name">
                             <input type="email" name="email" class="rounded shadow-md border-[#284c817e] border focus:ring-transparent focus:border-[#284b81] active:border-[#284b81] w-full my-2" placeholder="Your Email Address">
                             <input type="text" name="subject" class="rounded shadow-md border-[#284c817e] border focus:ring-transparent focus:border-[#284b81] active:border-[#284b81] w-full my-2" placeholder="Subject">
-                            <textarea  name="email" class="rounded shadow-md border-[#284c817e] border focus:ring-transparent focus:border-[#284b81] active:border-[#284b81] w-full my-2" Placeholder="Message"></textarea>
+                            <textarea  name="message" class="rounded shadow-md border-[#284c817e] border focus:ring-transparent focus:border-[#284b81] active:border-[#284b81] w-full my-2" Placeholder="Message"></textarea>
                             <div class="flex justify-center">
                                 <input type="submit" value="Submit" class="rounded-md shadow-md bg-[#284b81] text-white hover:bg-[#2c5da7] px-4 py-1">
                             </div>
@@ -524,6 +462,9 @@
     </script>
 
     <script src="{{asset('js/wow/wow.min.js')}}"></script>
+
+    
+
     <script>
         new WOW().init();
         </script>

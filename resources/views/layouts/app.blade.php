@@ -37,7 +37,7 @@
 
         @yield('css')
     </head>
-    <body class="font-sans antialiased" style="font-family: 'Ubuntu', sans-serif;">
+    <body class="font-sans antialiased" style="font-family: 'Ubuntu', sans-serif;" >
         <div class="min-h-screen bg-gray-50" id="home">
             {{-- top info start --}}
                 <div class="w-full bg-[#284b81]">
@@ -89,7 +89,7 @@
                             <div class="text-gray-600">
                                 <h1 class="text-xl text-[#284b81] my-5">Our Social Networks</h1>
                                 <p>
-                                    Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies
+                                    Follow Us on
                                 </p>
                                 <div class="flex my-3">
                                     <div>
@@ -105,19 +105,7 @@
 
                             <div class="text-gray-600">
                                 <h1 class="text-xl text-[#284b81] my-5">Follow us on Facebook</h1>
-                                <p>
-                                    Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies
-                                </p>
-                                <div class="flex my-3">
-                                    <div>
-                                        <a href="#">
-                                            <i class="fab fa-facebook p-2 rounded-md text-md mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fab fa-instagram p-2 rounded-md text-md mx-1 bg-[#284c81] hover:bg-[#284c81d7] text-white"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSmartBizAdvisorypvtltd&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1480488948989338" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                             </div>
                         </div>
                     </div>
@@ -126,10 +114,10 @@
                     <div class="w-10/12 mx-auto pt-3 pb-1">
                         <div class="flex justify-between flex-col md:flex-row ">
                             <p>
-                                &copy; Copyright <b>Smartbiz.</b> All Rights reserved
+                                &copy; Copyright {{ now()->year}} <b>Smartbiz.</b> All Rights reserved
                             </p>
                             <p>
-                                Developed by: <a href="https://bitmapitsolution.com" class="text-red-500 hover:text-red-700">BITS</a>
+                                Developed by: <a href="https://bitmapitsolution.com" class="text-red-500 hover:text-red-700">Bitmap I.T. Solution PVT. LTD.</a>
                             </p>
                         </div>
                     </div>
@@ -139,6 +127,54 @@
             
         </div>
         @yield('js')
+
+        <script>
+            // Cache selectors
+            var lastId,
+                topMenu = $("#home"),
+                topMenuHeight = topMenu.outerHeight()+15,
+                // All list items
+                menuItems = topMenu.find("a"),
+                // Anchors corresponding to menu items
+                scrollItems = menuItems.map(function(){
+                var item = $($(this).attr("href"));
+                if (item.length) { return item; }
+                });
+    
+            // Bind click handler to menu items
+            // so we can get a fancy scroll animation
+            menuItems.click(function(e){
+            var href = $(this).attr("href"),
+                offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+            $('html, body').stop().animate({ 
+                scrollTop: offsetTop
+            }, 300);
+            e.preventDefault();
+            });
+    
+            // Bind to scroll
+            $(window).scroll(function(){
+            // Get container scroll position
+            var fromTop = $(this).scrollTop()+topMenuHeight;
+            
+            // Get id of current scroll item
+            var cur = scrollItems.map(function(){
+                if ($(this).offset().top < fromTop)
+                return this;
+            });
+            // Get the id of the current element
+            cur = cur[cur.length-1];
+            var id = cur && cur.length ? cur[0].id : "";
+            
+            if (lastId !== id) {
+                lastId = id;
+                // Set/remove active class
+                menuItems
+                    .parent().removeClass("text-red-800")
+                    .end().filter("[href='#"+id+"']").parent().addClass("text-red-800");
+            }                   
+            });
+        </script>
 
     </body>
 </html>
